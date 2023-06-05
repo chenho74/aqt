@@ -184,6 +184,7 @@ def dot(lhs: jnp.ndarray, rhs: jnp.ndarray,
     raise TypeError('Incompatible shapes for dot: got {} and {}.'.format(
         lhs.shape, rhs.shape))
 
+"""This function is the quantzied matmul"""
 
 def dot_general(lhs: jnp.ndarray,
                 rhs: jnp.ndarray,
@@ -215,7 +216,8 @@ def dot_general(lhs: jnp.ndarray,
   lhs_scale, lhs_inv_scale = lhs_quantizer._get_quant_scale(train)
   rhs_scale, rhs_inv_scale = rhs_quantizer._get_quant_scale(train)
 
-  lhs = lhs_scale * lhs
+  # quantize
+  lhs = lhs_scale * lhs 
   rhs = rhs_scale * rhs
 
   lhs = lhs_quantizer._to_quant(lhs, train)

@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""This file is relevant"""
+
 """Tests for matmul."""
 
 import copy
@@ -189,7 +191,7 @@ class MatmulTest(tf.test.TestCase, parameterized.TestCase):
                 [0, 1]
             ],))
 
-    config = aqt_config.AqtMatmulConfig(lhs_config, rhs_config)
+    config = aqt_config.AqtMatmulConfig(lhs_config, rhs_config) # they support different quantization precision. and quantized both weights and activations. we don't need that. 
 
     return config, lhs, qlhs, rhs, qrhs
 

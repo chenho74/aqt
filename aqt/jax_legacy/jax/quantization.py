@@ -959,7 +959,7 @@ def quantized_dot_general(*,
         )
     else:
       assert quant_w is not None
-    input_dtype = act.dtype
+    input_dtype = act.dtype # this is key. even though its "quantized" below, it is casted to this input_dtype which is float. 
 
     is_act_quantized = False
     # In this case, activations will be quantized at some point during training
@@ -1095,7 +1095,7 @@ def quantized_dot_general(*,
           weight_quantized,
           dimension_numbers=dimension_numbers,
           dot_precision=dot_precision,
-          use_int8_to_int32_dot=use_int8_to_int32_dot)
+          use_int8_to_int32_dot=use_int8_to_int32_dot) # if activation is not quantized, we just do float dot product. 
 
     # Scale the columns of the matmul output by computing `matmul(...) * t^-1`
     # TODO(malmaud): Make it possible to return an unquantized matmul to support
